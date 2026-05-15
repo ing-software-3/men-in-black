@@ -1,0 +1,47 @@
+@startuml
+left to right direction 
+skinparam packageStyle rectangle
+
+actor Administrador
+actor Empleado
+
+Rectangle "Sistema de Gestion y Manejo de Inventario MEN IN Black ⬛"{ 
+    usecase "Gestionar Inventario de Productos" as UC1
+    usecase "Registrar nuevos Productos" as UC2
+    usecase "Buscar Productos" as UC3
+    usecase "Exportar logs del Sistema " as UC4
+    usecase "Productos por caracteristicas" as UC5
+    usecase "Generar logs de modificaciones de Ventas" as UC6 
+    usecase "validar usuarios para modulo de ventas " as UC7
+    usecase "Actualizar Precios" as UC8
+    usecase "Ejecutar Sistema " as UC9
+   
+}
+
+Administrador --> UC1
+Administrador --> UC2
+Administrador --> UC3
+Administrador --> UC4
+Administrador --> UC5
+Administrador --> UC6  
+Administrador --> UC7 
+Administrador --> UC8
+Administrador --> UC9
+
+Empleado --> UC3
+Empleado --> UC5
+Empleado --> UC7
+
+'Relaciones:'
+UC1 .> UC2 
+UC1 .> UC8 
+UC7 .> UC3                                                                                  
+UC6 .> UC4 
+
+
+@enduml
+
+
+
+
+
