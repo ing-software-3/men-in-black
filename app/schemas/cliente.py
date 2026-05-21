@@ -1,0 +1,30 @@
+from typing import Optional
+from pydantic import BaseModel
+
+
+class ClienteBase(BaseModel):
+    nombre: str
+    apellido: str
+    correo: str
+    celular: int
+
+
+class ClienteCreate(ClienteBase):
+    """Schema para crear un cliente"""
+    pass
+
+
+class ClienteUpdate(BaseModel):
+    """Schema para actualizar un cliente"""
+    nombre: Optional[str] = None
+    apellido: Optional[str] = None
+    correo: Optional[str] = None
+    celular: Optional[int] = None
+
+
+class ClienteResponse(ClienteBase):
+    """Schema para responder con datos de cliente"""
+    id_cliente: int
+
+    class Config:
+        from_attributes = True

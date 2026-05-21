@@ -1,31 +1,33 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+from app.core.database import Base, engine
+from app.routes.auth import router as auth_router
+from app.routes.user import router as user_router
+from app.routes.productos import router as productos_router
+from app.routes.filtro import router as filtro_router
+from app.routes.usuario import router as usuario_router
+from app.routes.inventario import router as inventario_router
+from app.routes.cliente import router as cliente_router
+from app.routes.venta import router as venta_router
 
-productos = [
-    {"id": 1, "Producto": "Monitor", "precio": 5000},
-    {"id": 1, "Producto": "Mouse", "precio": 5000},
-    {"id": 2, "Producto": "Teclado", "precio": 2000}
-    
-    ]
+Base.metadata.create_all(bind=engine)
 
-class Producto(BaseModel):
-    id: int
-    Producto: str
-    precio: float
+app = FastAPI(title="Clase Software")
 
-@app.get("/")
-def get_start():
-    return {"message": "Bienvenido a la API de productos"}
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/productos")
-def get_productos():
-    return {"codigo": 200, "data": productos}
-
-@app.get({"/productos/{id}"})
-def get_producto(id: int):
-    for producto in productos:
-        if producto["id"] == id:
-            return {"codigo": 200, "data": producto}
-    raise HTTPException(status_code=404, detail="Producto no encontrado")
+app.include_router(auth_router)
+app.include_router(user_router)
+app.include_router(productos_router)
+app.include_router(filtro_router)
+app.include_router(usuario_router)
+app.include_router(inventario_router)
+app.include_router(cliente_router)
+app.include_router(venta_router)    
