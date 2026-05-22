@@ -28,6 +28,8 @@ app.include_router(user_router)
 app.include_router(productos_router)
 app.include_router(filtro_router)
 app.include_router(usuario_router)
-app.include_router(inventario_router)
+
 app.include_router(cliente_router)
-app.include_router(venta_router)    
+
+app.include_router(inventario_router)  
+app.include_router(venta_router)  
