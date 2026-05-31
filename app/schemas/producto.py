@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class ProductBase(BaseModel):
@@ -25,8 +25,4 @@ class ProductUpdate(BaseModel):
 
 
 class ProductResponse(ProductBase):
-    """Schema para responder con datos de producto"""
-    id_producto: int
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

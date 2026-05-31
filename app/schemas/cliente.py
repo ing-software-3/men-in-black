@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel,ConfigDict
 
 
 class ClienteBase(BaseModel):
@@ -23,8 +23,4 @@ class ClienteUpdate(BaseModel):
 
 
 class ClienteResponse(ClienteBase):
-    """Schema para responder con datos de cliente"""
-    id_cliente: int
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
