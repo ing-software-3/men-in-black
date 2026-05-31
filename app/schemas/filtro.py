@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class FiltroBase(BaseModel):
@@ -21,8 +21,4 @@ class FiltroUpdate(BaseModel):
 
 
 class FiltroResponse(FiltroBase):
-    """Schema para responder con datos de filtro"""
-    id_filtro: int
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

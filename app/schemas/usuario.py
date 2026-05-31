@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class UsuarioBase(BaseModel):
@@ -21,8 +21,4 @@ class UsuarioUpdate(BaseModel):
 
 
 class UsuarioResponse(UsuarioBase):
-    """Schema para responder con datos de usuario"""
-    id_usuario: int
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

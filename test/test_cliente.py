@@ -22,7 +22,6 @@ def client():
 
 @pytest.fixture
 def admin_headers():
-    # Simula un token válido
     return {"Authorization": "Bearer faketoken123"}
 
 @pytest.fixture
@@ -58,4 +57,4 @@ def test_cliente_fixture(db_session):
 
 def test_inventario_endpoint(client, admin_headers):
     response = client.get("/inventario", headers=admin_headers)
-    assert response.status_code in (200, 404)  # depende de si tienes datos
+    assert response.status_code in (200, 404)  
