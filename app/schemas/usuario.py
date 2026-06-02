@@ -21,4 +21,5 @@ class UsuarioUpdate(BaseModel):
 
 
 class UsuarioResponse(UsuarioBase):
+    id_usuario: int
     model_config = ConfigDict(from_attributes=True)
