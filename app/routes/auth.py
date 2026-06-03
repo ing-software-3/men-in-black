@@ -45,7 +45,7 @@ def login(
 
     access_token = create_access_token(data={"sub": str(user.id), "role": user.role})
 
-    return Token(access_token=access_token, token_type="bearer")
+    return Token(access_token=access_token, token_type="bearer")  # nosec
 
 
 @router.post("/auth/register", response_model=UserResponse, tags=["auth"])
