@@ -94,3 +94,5 @@ Sistema de organizacion y manejo de inventarios para Men in Black, monitoreando 
 ---
 
 **Última actualización**: 2025-05-03
+
+
